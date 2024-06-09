@@ -1,6 +1,11 @@
 package com.hikari.websitenavigator;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +14,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    Button showButton;
+    EditText linkInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +27,17 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        showButton = findViewById(R.id.ShowButton);
+        linkInput = findViewById(R.id.LinkInput);
+
+        showButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(linkInput.getText().toString()));
+                startActivity(intent);
+            }
+        });
     }
+
+
 }
